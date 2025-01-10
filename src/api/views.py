@@ -4,9 +4,6 @@ from api.models import User
 from api.serializers import UserRegistrationModelSerializer
 
 
-class UserViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     queryset = User.objects.all()
-
-    def get_serializer_class(self):
-        if self.action == "create":
-            return UserRegistrationModelSerializer
+    serializer_class = UserRegistrationModelSerializer
