@@ -24,3 +24,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = "пользователь"
         verbose_name_plural = "пользователи"
+
+
+class Task(models.Model):
+    title = models.CharField(max_length=255, verbose_name="название")
+    description = models.TextField(verbose_name="описание")
+    due_date = models.DateField(verbose_name="дата завершения")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks", verbose_name="пользователь")
+
+    class Meta:
+        verbose_name = "задача"
+        verbose_name_plural = "задачи"
