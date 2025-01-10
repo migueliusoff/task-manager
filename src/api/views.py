@@ -9,6 +9,12 @@ class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, viewsets.G
     serializer_class = UserModelSerializer
 
 
-class TaskViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+class TaskViewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet,
+):
     queryset = Task.objects.all()
     serializer_class = TaskModelSerializer
