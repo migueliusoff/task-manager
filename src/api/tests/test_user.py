@@ -2,6 +2,7 @@ import pytest
 from rest_framework import status
 from rest_framework.reverse import reverse
 
+from api.tests.factories.task import TaskFactory
 from api.tests.factories.user import UserFactory
 
 
@@ -30,4 +31,17 @@ def test_user_get_success(api_client):
 
 def test_user_get_error(api_client):
     response = api_client.get(reverse("user-detail", kwargs={"pk": 0}))
+    assert response.status_code == status.HTTP_404_NOT_FOUND
+
+
+def test_user_tasks_success(api_client):
+    user = UserFactory.create()
+    task = TaskFactory.create(user=user)
+    response = api_client.get(reverse("user-tasks", kwargs={"pk": user.id}))
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json()[0]["title"] == task.title
+
+
+def test_user_tasks_error(api_client):
+    response = api_client.get(reverse("user-tasks", kwargs={"pk": 0}))
     assert response.status_code == status.HTTP_404_NOT_FOUND
