@@ -846,6 +846,16 @@ files = [
 ]
 
 [[package]]
+name = "uwsgi"
+version = "2.0.28"
+description = "The uWSGI server"
+optional = false
+python-versions = "*"
+files = [
+    {file = "uwsgi-2.0.28.tar.gz", hash = "sha256:79ca1891ef2df14508ab0471ee8c0eb94bd2d51d03f32f90c4bbe557ab1e99d0"},
+]
+
+[[package]]
 name = "virtualenv"
 version = "20.28.1"
 description = "Virtual Python Environment builder"
@@ -879,4 +889,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "90802b3c0e63266b24e96fb2e5c9999d01827e85c1f667ba6a5b0fc610c08608"
+content-hash = "563f6df5488f211e171c9b41446ba6258f802673e134ba648d08fd0f0e3f38c7"
